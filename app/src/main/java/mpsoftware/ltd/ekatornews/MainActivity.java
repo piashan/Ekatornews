@@ -3,6 +3,10 @@ package mpsoftware.ltd.ekatornews;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerTabStrip;
+import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,15 +17,33 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import mpsoftware.ltd.ekatornews.adapter.SampleFragmentPagerAdapter;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SampleFragmentPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+        PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_header);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+       // TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        // Give the TabLayout the ViewPager
+
+        adapter = new SampleFragmentPagerAdapter(getFragmentManager(), getApplication());
+        viewPager.setAdapter(adapter);
+        pagerTabStrip.setGravity(Gravity.LEFT);
+       // tabLayout.setupWithViewPager(viewPager);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
