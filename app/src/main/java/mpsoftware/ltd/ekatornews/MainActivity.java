@@ -3,6 +3,7 @@ package mpsoftware.ltd.ekatornews;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
@@ -34,16 +35,17 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_header);
+        //mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_header);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-       // TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+       TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         // Give the TabLayout the ViewPager
 
         mAdapter = new SampleFragmentPagerAdapter(getFragmentManager(), getApplication());
         mViewPager.setAdapter(mAdapter);
-        mPagerTabStrip.setGravity(Gravity.LEFT);
-       // tabLayout.setupWithViewPager(mViewPager);
+
+       // mPagerTabStrip.setGravity(Gravity.LEFT);
+        tabLayout.setupWithViewPager(mViewPager);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
