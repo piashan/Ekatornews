@@ -47,7 +47,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SNewsViewHolder> {
                 .with(mContext)
                 .load("")
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.bbc)
                 .crossFade()
                 .into(holder.mImageViewNewsImage);
 

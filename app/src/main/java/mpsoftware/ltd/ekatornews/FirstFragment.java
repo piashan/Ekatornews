@@ -70,17 +70,17 @@ public class FirstFragment extends Fragment {
         mStringList.add("First-time claims for US unemployment benefits rose in the final week of October but the extended trend of low levels persisted, the");
         mStringList.add("German sportswear group Adidas on Thursday reported a jump in third-quarter profits, lifted by a surge in sales of its own-brand trainers");
         mStringList.add("Facebook on Wednesday delivered another blockbuster earnings performance, showing solid growth in mobile ad revenues as the social");
-        mStringList.add("After Mashrafe Bin Mortaza, Mushfiqur Rahim and Shakib Al Hasan reached the 10-year mark in their cricketing careers,");
+        mStringList.add("After Mashrafe Bin Mortaza, Mushfiqur Rahim and Shakib Al Hasan reached the 10-year mark in their cricketing careers");
         mStringList.add("England is a known power in the cricketing world. Bangladesh, for the most part of its 16 years since attaining Test status, has struggled to keep its nose above water, sometimes to the condescending stare of cricket gurus.");
         mStringList.add("With India in the foreground, you get another measure to evaluate on a tripartite scale the cricketing prowess of two sub-continental countries versus England. This is the beauty of successive cricketing clashes, Test matches in particular, that we should be having by way value addition to world cricket.");
-        mStringList.add("Negligence, callousness and a lack of farsightedness of the local...");
+        mStringList.add("Negligence, callousness and a lack of farsightedness of the local");
         mStringList.add("First-time claims for US unemployment benefits rose in the final week of October but the extended trend of low levels persisted, the");
         mStringList.add("German sportswear group Adidas on Thursday reported a jump in third-quarter profits, lifted by a surge in sales of its own-brand trainers");
         mStringList.add("Facebook on Wednesday delivered another blockbuster earnings performance, showing solid growth in mobile ad revenues as the social");
-        mStringList.add("After Mashrafe Bin Mortaza, Mushfiqur Rahim and Shakib Al Hasan reached the 10-year mark in their cricketing careers,");
+        mStringList.add("After Mashrafe Bin Mortaza, Mushfiqur Rahim and Shakib Al Hasan reached the 10-year mark in their cricketing careers");
         mStringList.add("England is a known power in the cricketing world. Bangladesh, for the most part of its 16 years since attaining Test status, has struggled to keep its nose above water, sometimes to the condescending stare of cricket gurus.");
         mStringList.add("With India in the foreground, you get another measure to evaluate on a tripartite scale the cricketing prowess of two sub-continental countries versus England. This is the beauty of successive cricketing clashes, Test matches in particular, that we should be having by way value addition to world cricket.");
-        mStringList.add("Negligence, callousness and a lack of farsightedness of the local...");
+        mStringList.add("Negligence, callousness and a lack of farsightedness of the local");
     }
 
 }

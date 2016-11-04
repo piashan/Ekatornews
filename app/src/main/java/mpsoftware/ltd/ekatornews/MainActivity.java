@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
 
     private SampleFragmentPagerAdapter mAdapter;
     private ViewPager mViewPager;
+    private TabLayout mTabLayout;
     private PagerTabStrip mPagerTabStrip;
 
     @Override
@@ -33,19 +34,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         //mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_header);
-
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-       TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        // Give the TabLayout the ViewPager
+        mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         mAdapter = new SampleFragmentPagerAdapter(getFragmentManager(), getApplication());
         mViewPager.setAdapter(mAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
 
-       // mPagerTabStrip.setGravity(Gravity.LEFT);
-        tabLayout.setupWithViewPager(mViewPager);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
