@@ -43,11 +43,11 @@ public class FirstFragment extends Fragment {
         for (int i = 0; i <10 ; i++) {
             mStringList.add("Bangla new 24. com " +i);
         }
-        FlipInTopXAnimator animator = new FlipInTopXAnimator();
-        animator.setAddDuration(500);
-        animator.setRemoveDuration(500);
+        //FlipInTopXAnimator animator = new FlipInTopXAnimator();
+        //animator.setAddDuration(500);
+        //animator.setRemoveDuration(500);
         mRVAdapter = new RVAdapter(getActivity(), mStringList);
-        mRecyclerViewSNews.setItemAnimator(animator);
+        //mRecyclerViewSNews.setItemAnimator(animator);
         mRecyclerViewSNews.setAdapter(mRVAdapter);
 
 

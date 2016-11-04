@@ -3,7 +3,6 @@ package mpsoftware.ltd.ekatornews;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
@@ -22,7 +21,10 @@ import mpsoftware.ltd.ekatornews.adapter.SampleFragmentPagerAdapter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    SampleFragmentPagerAdapter adapter;
+    private SampleFragmentPagerAdapter mAdapter;
+    private ViewPager mViewPager;
+    private PagerTabStrip mPagerTabStrip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +34,16 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_header);
+        mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_header);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
        // TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         // Give the TabLayout the ViewPager
 
-        adapter = new SampleFragmentPagerAdapter(getFragmentManager(), getApplication());
-        viewPager.setAdapter(adapter);
-        pagerTabStrip.setGravity(Gravity.LEFT);
-       // tabLayout.setupWithViewPager(viewPager);
+        mAdapter = new SampleFragmentPagerAdapter(getFragmentManager(), getApplication());
+        mViewPager.setAdapter(mAdapter);
+        mPagerTabStrip.setGravity(Gravity.LEFT);
+       // tabLayout.setupWithViewPager(mViewPager);
 
 
 
@@ -104,14 +106,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            mViewPager.setCurrentItem(0);
         } else if (id == R.id.nav_gallery) {
+            mViewPager.setCurrentItem(1);
 
         } else if (id == R.id.nav_slideshow) {
 
+            mViewPager.setCurrentItem(2);
         } else if (id == R.id.nav_manage) {
-
+            mViewPager.setCurrentItem(3);
         } else if (id == R.id.nav_share) {
-
+            mViewPager.setCurrentItem(4);
         } else if (id == R.id.nav_send) {
 
         }

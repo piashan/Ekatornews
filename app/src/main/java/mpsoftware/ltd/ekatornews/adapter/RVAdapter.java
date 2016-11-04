@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
@@ -41,6 +44,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SNewsViewHolder> {
     public void onBindViewHolder(SNewsViewHolder holder, int position) {
 
         holder.mTextViewSNews.setText(mStringList.get(position));
+        Glide
+                .with(mContext)
+                .load("")
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher)
+                .crossFade()
+                .into(holder.mImageViewNewsImage);
+
         if (position > mPreviousPosition) {
             AnimationUtils.animateSunblind(holder, true);
 //            AnimationUtils.animateSunblind(holder, true);
@@ -62,9 +73,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SNewsViewHolder> {
 
     public class SNewsViewHolder extends RecyclerView.ViewHolder {
         private TextView mTextViewSNews;
+        private ImageView mImageViewNewsImage;
         public SNewsViewHolder(View itemView) {
             super(itemView);
             mTextViewSNews = (TextView) itemView.findViewById(R.id.textViewSnews);
+            mImageViewNewsImage = (ImageView)itemView.findViewById(R.id.imageViewNewsImage);
         }
     }
 }
