@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import mpsoftware.ltd.ekatornews.AnimationUtils;
@@ -25,6 +23,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SNewsViewHolder> {
 
     private Context mContext;
     private List<String > mStringList;
+    private RVClickListener mRVClickListener;
     private int mPreviousPosition = 0;
 
     public RVAdapter(Context mContext, List<String> mStringList) {
@@ -71,13 +70,28 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SNewsViewHolder> {
         return mStringList.size();
     }
 
-    public class SNewsViewHolder extends RecyclerView.ViewHolder {
+    public void setOnClickListener(RVClickListener RVClickListener){
+        mRVClickListener = RVClickListener;
+    }
+
+    public interface RVClickListener{
+
+        void onItemClick(int position, View view);
+    }
+
+    public class SNewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTextViewSNews;
         private ImageView mImageViewNewsImage;
         public SNewsViewHolder(View itemView) {
             super(itemView);
             mTextViewSNews = (TextView) itemView.findViewById(R.id.textViewSnews);
             mImageViewNewsImage = (ImageView)itemView.findViewById(R.id.imageViewNewsImage);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mRVClickListener.onItemClick(getAdapterPosition(), view);
         }
     }
 }
