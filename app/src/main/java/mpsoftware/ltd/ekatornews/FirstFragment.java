@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import jp.wasabeef.recyclerview.animators.FlipInTopXAnimator;
+import mpsoftware.ltd.ekatornews.API.NewsPaperInterface;
+import mpsoftware.ltd.ekatornews.API.RetrofitClient;
 import mpsoftware.ltd.ekatornews.adapter.RVAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -25,6 +32,8 @@ public class FirstFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private List<String> mStringList = new ArrayList<>();
     private RVAdapter mRVAdapter;
+
+    private NewsPaperInterface mNewsPaperInterface;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -41,7 +50,11 @@ public class FirstFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerViewSNews.setLayoutManager(mLayoutManager);
 
-        getDataSet();
+        Retrofit retrofit = RetrofitClient.getInstance(getActivity());
+        mNewsPaperInterface = retrofit.create(NewsPaperInterface.class);
+
+
+       //getDataSet();
 /*
         for (int i = 0; i <10 ; i++) {
             mStringList.add("Bangla new 24. com " +i);
@@ -49,22 +62,15 @@ public class FirstFragment extends Fragment {
         //FlipInTopXAnimator animator = new FlipInTopXAnimator();
         //animator.setAddDuration(500);
         //animator.setRemoveDuration(500);
-        mRVAdapter = new RVAdapter(getActivity(), mStringList);
-        //mRecyclerViewSNews.setItemAnimator(animator);
-        mRecyclerViewSNews.setAdapter(mRVAdapter);
 
-        mRVAdapter.setOnClickListener(new RVAdapter.RVClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                Toast.makeText(getActivity(), "CLick is ok", Toast.LENGTH_SHORT).show();
-            }
-        });
+        getTitleFromApi();
+
 
 
         return view;
     }
 
-    public void getDataSet(){
+    private void getDataSet(){
         mStringList.add("Separation of judiciary from the executive organs of the State was announced as one of the fundamental principles of the State policy in Article 22 of the new constitution of Independent Bangladesh. " );
         mStringList.add("The government is creating a land bank of 100,000 acres to help domestic and foreign investors set up their factories without any");
         mStringList.add("First-time claims for US unemployment benefits rose in the final week of October but the extended trend of low levels persisted, the");
@@ -83,4 +89,36 @@ public class FirstFragment extends Fragment {
         mStringList.add("Negligence, callousness and a lack of farsightedness of the local");
     }
 
+    private void getTitleFromApi(){
+
+        mNewsPaperInterface.getNewsTitle().enqueue(
+                new Callback<List<String>>() {
+                    @Override
+                    public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+
+                        Log.e("Test", "onResponse: "+response.body().toString() );
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            mRVAdapter = new RVAdapter(getActivity(), response.body());
+                            //mRecyclerViewSNews.setItemAnimator(animator);
+                            mRecyclerViewSNews.setAdapter(mRVAdapter);
+
+
+                            mRVAdapter.setOnClickListener(new RVAdapter.RVClickListener() {
+                                @Override
+                                public void onItemClick(int position, View view) {
+                                    Toast.makeText(getActivity(), "CLick is ok", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<String>> call, Throwable t) {
+
+                        Log.e("Test", "onFailure: "+t.toString() );
+                    }
+                }
+        );
+    }
 }
